@@ -1,0 +1,29 @@
+<br>
+<div class="col-md-6">
+  <br>
+  <form action="/shoes/create" method="POST">
+    <div class="form-group">
+      <label for="name">Название</label>
+      <input type="text" name="shoe[name]" class="form-control" >
+    </div>
+    <div class="form-group">
+      <label >Выберите категорию</label>
+      <select class="form-control" name="shoe[category_id]">
+        <% @categories.each do |category| %>
+          <option value="<%= category.id %>"><%= category.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Описание</label>
+      <textarea name="shoe[description]" class="form-control" rows="10"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Цена</label>
+      <input type="number" name="shoe[price]" class="form-control">
+    </div>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <button type="submit" class="btn btn-primary">Создать</button>
+  </form>
+</div>
+<br>
