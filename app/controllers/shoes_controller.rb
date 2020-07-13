@@ -1,4 +1,5 @@
 class ShoesController < ApplicationController
+  before_action :set_shoe, only: %i[edit update destroy show]
 
   def index
     @shoes = Shoe.all()
@@ -11,37 +12,55 @@ class ShoesController < ApplicationController
     render 'index'
   end
 
-  def show
-    @shoe = Shoe.find(params[:id])
-  end
 
   def edit
-    @categories = Category.all()
-    @shoe = Shoe.find(params[:id])
+   get_all_data
   end
 
   def new
-    @categories = Category.all()
+    @shoe = Shoe.new
+    get_all_data
   end
 
   def create
     @shoe = Shoe.new(shoe_params)
-    @shoe.save
-
-    redirect_to '/shoes/' + @shoe.id.to_s
+    if @shoe.save
+      redirect_to shoe_path(@shoe)
+    else
+      get_all_data
+      render 'new'
+    end
   end
 
   def update
-    @shoe = Shoe.find(params[:id])
-    @shoe.update(shoe_params)
+    if @shoe.update(shoe_params)
+      redirect_to shoe_path(@shoe)
+    else
+      get_all_data
+      render 'edit'
+    end
+  end
 
-    redirect_to '/shoes/' + @shoe.id.to_s
+  def destroy
+    @shoe.destroy
+    redirect_to root_path
   end
 
   private
 
+  def set_shoe
+    @shoe = Shoe.find(params[:id])
+  end
+
+  def get_all_data
+    @categories = Category.all()
+    @genders = Gender.all()
+    @brands = Brand.all()
+    @sizes = Size.all()
+  end
+
   def shoe_params
-    (params.require(:shoe).permit(:name, :description, :price, :category_id))
+    params.require(:shoe).permit(:name, :description, :price, :category_id, :brand_id, :gender_id, :size_id)
   end
 
 end

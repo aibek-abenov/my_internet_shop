@@ -1,0 +1,37 @@
+
+<div class="col-md-6">
+  <br>
+  <br>
+  <%= form_with model: @shoe, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :name, "Название" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description, "Описание" %>
+      <%= f.text_area :description, class: "form-control", rows: "4" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :price, "Цена" %>
+      <%= f.number_field :price, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :category_id, "Выберите категорию" %>
+      <%= f.select :category_id, options_from_collection_for_select(@categories, "id", "name", @shoe.present? ? @shoe.category_id : nil ), { include_blank: true }, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :gender_id, "Выберите пол(М, Ж)" %>
+      <%= f.select :gender_id, options_from_collection_for_select(@genders, "id", "gender", @shoe.present? ? @shoe.gender_id : nil ), { include_blank: true }, {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :brand_id, "Выберите брэнд" %>
+      <%= f.select :brand_id, options_from_collection_for_select(@brands, "id", "name", @shoe.present? ? @shoe.brand_id : nil ), { include_blank: true }, {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :size_id, "Выберите размер" %>
+      <%= f.select :size_id, options_from_collection_for_select(@sizes, "id", "name", @shoe.present? ? @shoe.size_id : nil ), { include_blank: true }, {class: "form-control"} %>
+    </div>
+     <%= submit_tag(action_name == "edit" ? "Сохранить" : "Создать", class: "btn btn-primary") %>
+  <% end %>
+</div>
+

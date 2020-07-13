@@ -10,7 +10,7 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+        <!-- <img class="img-fluid rounded" src="http://placehold.it/900x300" alt=""> -->
 
         <hr>
 
@@ -29,6 +29,7 @@
           </div>
         </div>
       </div>
-
+        <%= link_to 'Изменить', edit_shoe_path(@shoe)%>
+        |<%= link_to 'Удалить', shoe_path(@shoe), method: :delete, data: {confirm: 'Вы уверены?'} %>
 
       </div>
