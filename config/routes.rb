@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # post 'shoes/update/:id', to: 'shoes#update'
 
   root to: "shoes#index"
+  devise_for :users
   resources :shoes
   get 'category/:id', to: "shoes#category"
 end

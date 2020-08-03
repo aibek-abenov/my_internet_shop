@@ -23,12 +23,22 @@
               <% end %>
             </div>
           </li>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
-          </form>
-        <button type="button" class="btn btn-link">Регистрация</button>
-        <button type="button" class="btn btn-link">Войти</button>
+          <li>
+            <form class="navbar-form form-inline">
+              <div class="input-group search-box">
+                <input type="text" id="search" class="form-control" placeholder="Поиск">
+                <!-- <span class="input-group-addon"></span> -->
+              </div>
+            </form>
+          </li>
+          <div><p>  </p></div>
+          <li>
+            <% if current_user %>
+            <%= link_to 'Выйти', destroy_user_session_path, method: :delete, class: "btn btn-dark" %>
+            <% else %>
+            <%= link_to 'Войти', new_user_session_path, class: "btn btn-dark  " %>
+            <% end %>
+          </li>
         </ul>
       </div>
     </div>

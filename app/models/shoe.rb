@@ -7,4 +7,6 @@ class Shoe < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 300 }
   validates :price, presence: true
+
+  validates :picture, presence: true, blob: { content_type: ['image/jpg', 'image/jpeg', 'image/png'], size_range: 1..3.megabytes }
 end
