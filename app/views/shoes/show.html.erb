@@ -8,10 +8,15 @@
       <!-- /.col-lg-8 -->
       <div class="col-lg-5">
         <h1 class="font-weight-light"><%= @shoe.name%></h1>
-        <p><%= @shoe.description%></p>
-        <h5><%= @shoe.price%> тг</h5>
-        <a class="btn btn-primary" href="#"><%= link_to 'Изменить', edit_shoe_path(@shoe)%></a>
-        <a class="btn btn-secondary" href="#"><%= link_to 'Удалить', shoe_path(@shoe), method: :delete, data: {confirm: 'Вы уверены?'} %></a>
+        <p>Описание: <%= @shoe.description%></p>
+        <h5>Цена: <%= @shoe.price%> тг</h5>
+        <p>Размер: <%= @shoe.size.name %></p>
+        <p>Брэнд: <%= @shoe.brand.name %></p>
+        <p>Пол: <%= @shoe.gender.gender %></p>
+        <% if current_user %>
+        <%= link_to 'Изменить', edit_shoe_path(@shoe), class: 'btn btn-warning' %>
+        <%= link_to 'Удалить', shoe_path(@shoe), method: :delete, data: {confirm: 'Вы уверены?'}, class: 'btn btn-danger' %>
+        <% end %>
       </div>
       <!-- /.col-md-4 -->
     </div>

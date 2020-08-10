@@ -24,12 +24,9 @@
             </div>
           </li>
           <li>
-            <form class="navbar-form form-inline">
-              <div class="input-group search-box">
-                <input type="text" id="search" class="form-control" placeholder="Поиск">
-                <!-- <span class="input-group-addon"></span> -->
-              </div>
-            </form>
+          <%= form_tag shoes_path, :method => 'get' do %>
+            <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Поиск" %>
+          <% end %>
           </li>
           <div><p>  </p></div>
           <li>

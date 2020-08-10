@@ -9,4 +9,12 @@ class Shoe < ApplicationRecord
   validates :price, presence: true
 
   validates :picture, presence: true, blob: { content_type: ['image/jpg', 'image/jpeg', 'image/png'], size_range: 1..3.megabytes }
+
+  def self.search(search)
+    if search
+      where(["name LIKE ?","%#{search.downcase.capitalize}%"])
+    else
+      all
+    end
+  end
 end
