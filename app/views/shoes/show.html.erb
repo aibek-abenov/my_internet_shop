@@ -1,4 +1,5 @@
 <div class="container">
+  <p class="text-center"><%= link_to 'Таблица размеров', size_index_path, class: "btn btn-info" %></p>
    <div class="row align-items-center my-5">
       <div class="col-lg-7">
         <% if @shoe.picture.attached? %>
@@ -8,18 +9,17 @@
       <!-- /.col-lg-8 -->
       <div class="col-lg-5">
         <h1 class="font-weight-light"><%= @shoe.name%></h1>
-        <p>Описание: <%= @shoe.description%></p>
-        <h5>Цена: <%= @shoe.price%> тг</h5>
-        <p>Размер: <%= @shoe.size.name %></p>
-        <p>Брэнд: <%= @shoe.brand.name %></p>
-        <p>Пол: <%= @shoe.gender.gender %></p>
+        <p><b>Описание:</b> <%= @shoe.description%></p>
+        <p><b>Цена:</b> <span class="h5"><%= @shoe.price%> тг</span></p>
+        <p><b>Размер:</b> <%= @shoe.size.name %></p>
+        <p><b>Брэнд:</b> <%= @shoe.brand.name %></p>
+        <p><b>Пол:</b> <%= @shoe.gender.gender %></p>
+        <p><%= link_to 'Добавить в корзину', cart_add_path(@shoe), method: :post, class: "btn btn-dark" %></p>
         <% if current_user %>
         <%= link_to 'Изменить', edit_shoe_path(@shoe), class: 'btn btn-warning' %>
         <%= link_to 'Удалить', shoe_path(@shoe), method: :delete, data: {confirm: 'Вы уверены?'}, class: 'btn btn-danger' %>
         <% end %>
       </div>
-      <!-- /.col-md-4 -->
     </div>
-    <!-- /.row -->
 
 </div>

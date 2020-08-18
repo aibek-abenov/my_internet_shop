@@ -33,8 +33,12 @@
             <% if current_user %>
             <%= link_to 'Выйти', destroy_user_session_path, method: :delete, class: "btn btn-dark" %>
             <% else %>
-            <%= link_to 'Войти', new_user_session_path, class: "btn btn-dark  " %>
+            <%= link_to 'Войти', new_user_session_path, class: "btn btn-dark" %>
             <% end %>
+          </li>
+          <li>
+            <%= link_to 'Корзина', cart_index_path, class: "btn btn-dark" %>
+            <span class="text-white">(<%= cart_count %>)</span>
           </li>
         </ul>
       </div>

@@ -1,0 +1,28 @@
+<div class="container">
+<h1 class="text-center">Таблица размеров</h1>
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Размер</th>
+        <th scope="col">Возраст</th>
+        <th scope="col">См</th>
+        <th scope="col">Европа</th>
+        <th scope="col">США</th>
+        <th scope="col">Великобритания</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sizes.each do |size| %>
+      <tr>
+        <td><%= size.name  %></td>
+        <td><%= size.transcript["Возраст"] %></td>
+        <td><%= size.transcript["cm"] %></td>
+        <td><%= size.transcript["EU"] %></td>
+        <td><%= size.transcript["USA"] %></td>
+        <td><%= size.transcript["UK"] %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>

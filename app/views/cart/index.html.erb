@@ -1,0 +1,46 @@
+<div class="container">
+  <h1>Корзина</h1>
+  <% if @cart && @cart != {} %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th scope="col">Название</th>
+        <th scope="col">Описание</th>
+        <th scope="col">Размер</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Количество</th>
+        <th scope="col">Итого</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart.each do |key, value| %>
+      <tr>
+        <td><% if key.picture.attached? %>
+            <%= image_tag key.picture, size: 75 %>
+          <% end %></td>
+        <td><%= key.name  %></td>
+        <td><%= key.description %></td>
+        <td><%= key.size.name %></td>
+        <td><%= key.price %> тг</td>
+        <td><%= link_to '-', cart_delete_path(key), method: :delete, class: "btn btn-outline-secondary" %> <%= value["qty"] %> <%= link_to '+', cart_add_path(key), method: :post, class: "btn btn-outline-secondary" %></td>
+        <td><%= key.price * value["qty"] %> тг</td>
+        <td><%= link_to 'Удалить из корзины', cart_delete_path(key, :all), method: :delete, class: "btn btn-dark" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+   <div class="d-flex justify-content-between mb-3">
+    <div class="p-2"></div>
+      <div class="p-2"><%= link_to 'Очистить корзину', cart_delete_path(key=nil), method: :delete, class: "btn btn-danger" %></div>
+      <div class="p-2 bg-success text-white">Итого: <%= @cart_amount %> тг</div>
+  </div>
+  <!-- <div class="total-price">
+    <--%= link_to 'Next', new_order_path, class: "btn btn-success" %>
+  </div> -->
+  <% else %>
+  <p class="h1">Корзина пуста</p>
+  <% end %>
+  <br>
+</div>

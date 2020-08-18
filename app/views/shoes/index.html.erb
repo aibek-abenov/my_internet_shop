@@ -43,17 +43,20 @@
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
           <% if shoe.picture.attached? %>
-            <%= image_tag shoe.picture, class: "menu_icon" %>
+            <%= link_to (image_tag shoe.picture, class: "card-img-top"), shoe_path(shoe) %>
           <% end %>
           <div class="card-body">
-            <h4 class="card-title">
-              <%= link_to shoe.name, shoe_path(shoe) %>
+            <h4 class="card-title text-center text-secondary">
+              <%= shoe.name %>
             </h4>
-            <h5><%= shoe.price %></h5>
-            <p class="card-text"><%= shoe.description %></p>
+            <h5 class="text-center"><%= shoe.price %> тг</h5>
+            <p class="card-text text-center"><b>Размер: <%= shoe.size.transcript["EU"] %></b></p>
           </div>
           <div class="card-footer">
             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+          </div>
+          <div class="text-center">
+            <%= link_to 'Добавить в корзину', cart_add_path(shoe), method: :post, class: "btn btn-dark" %>
           </div>
         </div>
       </div>
@@ -69,7 +72,7 @@
     </div>
 
     <!-- Content Row -->
-    <div class="row">
+    <!-- div class="row">
       <% @shoes.each do |shoe|%>
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
@@ -89,7 +92,7 @@
         </div>
       </div>
       <% end %>
-    </div>
+    </div> -->
     <!-- /.row -->
 
   </div>

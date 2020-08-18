@@ -1,7 +1,7 @@
 class ShoesController < ApplicationController
 
   before_action :set_shoe, only: %i[edit update destroy show]
-  before_action :authenticate_user! , except: [:index, :show]
+  before_action :authenticate_user! , except: [:index, :show, :category]
 
   def index
     @shoes = Shoe.search(params[:search])

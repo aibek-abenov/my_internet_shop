@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  root to: "shoes#index"
-  devise_for :users
 
+  root to: "shoes#index"
+  get 'cart', to: 'cart#index', as: 'cart_index'
+  post 'cart/add/:id', to: 'cart#add', as: 'cart_add'
+  delete 'cart/remove(/:id(/:all))', to: 'cart#delete', as: 'cart_delete'
+  devise_for :users
   resources :shoes
   get 'category/:id', to: "shoes#category"
+  get 'size', to: 'size#index', as: 'size_index'
 end
