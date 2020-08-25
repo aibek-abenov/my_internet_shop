@@ -1,6 +1,7 @@
 <div class="container">
   <h1>Корзина</h1>
   <% if @cart && @cart != {} %>
+  <p class="text-right"><%= link_to 'Таблица размеров', size_index_path, class: "btn btn-info" %></p>
   <table class="table table-hover">
     <thead>
       <tr>
