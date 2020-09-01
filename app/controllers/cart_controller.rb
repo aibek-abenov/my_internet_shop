@@ -2,11 +2,10 @@ class CartController < ApplicationController
   include CartHelper
  #Index
   def index
-      cart = session[:cart]
-      @cart = CartSession.cart_contents(cart)
-      @cart_amount = CartSession.total(@cart)
-
-      # @shipping = Shipping.all
+    cart = session[:cart]
+    @cart = CartSession.cart_contents(cart)
+    @cart_amount = CartSession.total(@cart)
+    @order = Order.new
   end
 
   #Add
@@ -54,14 +53,33 @@ class CartController < ApplicationController
     end
   end
 
-  def build_json
+  # def build_json
+  #   cart = session[:cart]
+  #   @cart = CartSession.cart_contents(cart)
+  #   json = {
+  #     :cart_count => cart.count,
+  #     :cart => CartSession.cart_contents(cart),
+  #     :cart_amount => CartSession.total(@cart)
+  #   }
+  #   json
+  # end
+
+  def create_order
+    # binding.pry
     cart = session[:cart]
-    @cart = CartSession.cart_contents(cart)
-    json = {
-      :cart_count => cart.count,
-      :cart => CartSession.cart_contents(cart),
-      :cart_amount => CartSession.total(@cart)
-    }
-    json
+    @order = Order.new(order_params)
+    if @order.save
+      cart.clear
+      redirect_to root_path
+    else
+      redirect_to cart_path
+    end
+  end
+
+  private
+
+  def order_params
+    params["order"]["order"] = JSON.parse(params["order"]["order"])
+    params.require(:order).permit(:customer, :adress, :phone_number, order: [:name, :size, :price, :quantity, :amount ])
   end
 end

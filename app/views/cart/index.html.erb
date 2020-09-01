@@ -1,6 +1,6 @@
 <div class="container">
-  <h1>Корзина</h1>
   <% if @cart && @cart != {} %>
+  <h1 class="text-center">Корзина</h1>
   <p class="text-right"><%= link_to 'Таблица размеров', size_index_path, class: "btn btn-info" %></p>
   <table class="table table-hover">
     <thead>
@@ -23,25 +23,55 @@
           <% end %></td>
         <td><%= key.name  %></td>
         <td><%= key.description %></td>
-        <td><%= key.size.name %></td>
+        <td><%= key.size.transcript["EU"] %></td>
         <td><%= key.price %> тг</td>
         <td><%= link_to '-', cart_delete_path(key), method: :delete, class: "btn btn-outline-secondary" %> <%= value["qty"] %> <%= link_to '+', cart_add_path(key), method: :post, class: "btn btn-outline-secondary" %></td>
         <td><%= key.price * value["qty"] %> тг</td>
-        <td><%= link_to 'Удалить из корзины', cart_delete_path(key, :all), method: :delete, class: "btn btn-dark" %></td>
+        <td><%= link_to 'Удалить из корзины', cart_delete_path(key, :all), method: :delete, class: "btn btn-secondary" %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
-   <div class="d-flex justify-content-between mb-3">
-    <div class="p-2"></div>
-      <div class="p-2"><%= link_to 'Очистить корзину', cart_delete_path(key=nil), method: :delete, class: "btn btn-danger" %></div>
-      <div class="p-2 bg-success text-white">Итого: <%= @cart_amount %> тг</div>
+  <div><p class="p-2 bg-success text-white text-right">Итого: <%= @cart_amount %> тг</p></div>
+  <br>
+  <div class="p-2 text-right"><%= link_to 'Очистить корзину', cart_delete_path(key=nil), method: :delete, class: "btn btn-danger" %></div>
+  <br>
+  <p class="text-center">
+    <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      Оформить заказ
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="container">
+      <%= form_for :order, url: create_order_path, method: "post" do |f| %>
+        <div class="form-group">
+          <%= f.label :customer, "Имя" %>
+          <%= f.text_field :customer, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :adress, "Адрес" %>
+          <%= f.text_field :adress, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :phone_number, "Номер телефона" %>
+          <%= f.text_field :phone_number, class: "form-control" %>
+        </div>
+          <% @orders = [] %>
+        <% @cart.each do |i| %>
+          <% @orders << {name: i[0].name, size: i[0].size.transcript["EU"], price: i[0].price, quantity: i[1]["qty"], amount: (i[0].price * i[1]["qty"]).to_i }  %>
+        <% end %>
+          <%= f.hidden_field :order, value: @orders.to_json %>
+          <%= submit_tag "Оформить", class: "btn btn-success" %>
+      <% end %>
+    </div>
   </div>
-  <!-- <div class="total-price">
-    <--%= link_to 'Next', new_order_path, class: "btn btn-success" %>
-  </div> -->
   <% else %>
-  <p class="h1">Корзина пуста</p>
+  <p class="h1 text-center">Корзина пуста</p>
+  <div class="text-center">
+    <svg width="40em" height="40em" viewBox="0 0 16 16" class="bi bi-cart4" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+    </svg>
+  </div>
   <% end %>
   <br>
 </div>
