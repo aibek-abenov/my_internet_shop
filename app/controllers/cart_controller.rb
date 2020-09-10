@@ -1,6 +1,7 @@
 class CartController < ApplicationController
   include CartHelper
- #Index
+
+
   def index
     cart = session[:cart]
     @cart = CartSession.cart_contents(cart)
@@ -65,14 +66,13 @@ class CartController < ApplicationController
   # end
 
   def create_order
-    # binding.pry
     cart = session[:cart]
     @order = Order.new(order_params)
     if @order.save
       cart.clear
       redirect_to root_path
     else
-      redirect_to cart_path
+      redirect_to cart_index_path
     end
   end
 

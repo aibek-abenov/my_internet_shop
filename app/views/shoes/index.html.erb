@@ -4,108 +4,83 @@
     <div class="p-2 bd-highlight"><%= link_to 'Добавить новый товар', new_shoe_path, class: 'btn btn-success' %></div>
   </div>
   <% end %>
-    <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="carousel-item active">
-          <%= image_tag "placeimg_1000_350_any.jpg", alt: "placeholder image 1", class: "img-responsive d-block w-100" %>
-        </div>
-        <div class="carousel-item">
-          <%= image_tag "placeimg_1000_350_any_1.jpg", alt: "placeholder image 2", class: "img-responsive d-block w-100" %>
-        </div>
-        <div class="carousel-item">
-          <%= image_tag "placeimg_1000_350_any_2.jpg", alt: "placeholder image 3", class: "img-responsive d-block w-100" %>
-        </div>
+  <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active">
+        <%= image_tag "shoe_kids.png", alt: "placeholder image 1", class: "img-responsive d-block w-100" %>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-    <!-- Call to Action Well -->
-    <div class="card text-white bg-secondary my-5 py-4 text-center">
-      <div class="card-body">
-        <p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p>
+      <div class="carousel-item">
+        <%= image_tag "happy_kids.jpg", alt: "placeholder image 2", class: "img-responsive d-block w-100" %>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag "kids_converse.jpg", alt: "placeholder image 3", class: "img-responsive d-block w-100" %>
       </div>
     </div>
-
-    <!-- Content Row -->
-    <div class="row">
-      <% @shoes.each do |shoe|%>
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <% if shoe.picture.attached? %>
-            <%= link_to (image_tag shoe.picture, class: "card-img-top"), shoe_path(shoe) %>
-          <% end %>
-          <div class="card-body">
-            <h4 class="card-title text-center text-secondary">
-              <%= link_to shoe.name, shoe_path(shoe), class: "text-secondary" %>
-            </h4>
-            <h5 class="text-center"><%= shoe.price %> тг</h5>
-            <p class="card-text text-center"><b>Размер: <%= shoe.size.transcript["EU"] %></b></p>
-          </div>
-            <%= link_to 'Добавить в корзину', cart_add_path(shoe), method: :post, class: "btn btn-dark" %>
-        </div>
-      </div>
-      <% end %>
-    </div>
-    <!-- /.row -->
-
-     <!-- Call to Action Well -->
-    <div class="d-flex justify-content-around bg-secondary mb-3">
-      <div class="p-2 text-white">
-        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-clock-history" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
-          <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
-          <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
-        </svg>
-      </div>
-      <div class="p-2 text-white">
-        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5v7h-1v-7a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5v1A1.5 1.5 0 0 1 0 10.5v-7zM4.5 11h6v1h-6v-1z"/>
-          <path fill-rule="evenodd" d="M11 5h2.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5h-1v-1h1a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4.5h-1V5zm-8 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 1a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
-          <path fill-rule="evenodd" d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 1a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
-        </svg>
-      </div>
-      <div class="p-2 text-white">
-        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-wallet2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2.5 4l10-3A1.5 1.5 0 0 1 14 2.5v2h-1v-2a.5.5 0 0 0-.5-.5L5.833 4H2.5z"/>
-          <path fill-rule="evenodd" d="M1 5.5A1.5 1.5 0 0 1 2.5 4h11A1.5 1.5 0 0 1 15 5.5v8a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 13.5v-8zM2.5 5a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-11z"/>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Content Row -->
-    <!-- div class="row">
-      <% @shoes.each do |shoe|%>
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <% if shoe.picture.attached? %>
-            <%= image_tag shoe.picture, class: "menu_icon" %>
-          <% end %>
-          <div class="card-body">
-            <h4 class="card-title">
-              <%= link_to shoe.name, shoe_path(shoe) %>
-            </h4>
-            <h5><%= shoe.price %></h5>
-            <p class="card-text"><%= shoe.description %></p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-          </div>
-        </div>
-      </div>
-      <% end %>
-    </div> -->
-    <!-- /.row -->
-
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
-  <!-- /.container -->
+    <!-- Call to Action Well -->
+  <div class="card text-white bg-secondary my-5 py-4 text-center">
+    <div class="card-body">
+      <p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p>
+    </div>
+  </div>
+
+  <!-- Content Row -->
+  <div class="row">
+    <% @shoes.each do |shoe|%>
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card h-100">
+        <% if shoe.picture.attached? %>
+          <%= link_to (image_tag shoe.picture, class: "card-img-top"), shoe_path(shoe) %>
+        <% end %>
+        <div class="card-body">
+          <h4 class="card-title text-center text-secondary">
+            <%= link_to shoe.name, shoe_path(shoe), class: "text-secondary" %>
+          </h4>
+          <h5 class="text-center"><%= shoe.price %> тг</h5>
+          <p class="card-text text-center"><b>Размер: <%= shoe.size.transcript["EU"] %></b></p>
+        </div>
+          <%= link_to 'Добавить в корзину', cart_add_path(shoe), method: :post, class: "btn btn-dark" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <!-- /.row -->
+
+   <!-- Call to Action Well -->
+  <div class="d-flex justify-content-around bg-secondary mb-3">
+    <div class="p-2 text-white">
+      <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-clock-history" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+        <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+        <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+      </svg>
+    </div>
+    <div class="p-2 text-white">
+      <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5v7h-1v-7a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5v1A1.5 1.5 0 0 1 0 10.5v-7zM4.5 11h6v1h-6v-1z"/>
+        <path fill-rule="evenodd" d="M11 5h2.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5h-1v-1h1a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4.5h-1V5zm-8 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 1a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+        <path fill-rule="evenodd" d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 1a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+      </svg>
+    </div>
+    <div class="p-2 text-white">
+      <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-wallet2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2.5 4l10-3A1.5 1.5 0 0 1 14 2.5v2h-1v-2a.5.5 0 0 0-.5-.5L5.833 4H2.5z"/>
+        <path fill-rule="evenodd" d="M1 5.5A1.5 1.5 0 0 1 2.5 4h11A1.5 1.5 0 0 1 15 5.5v8a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 13.5v-8zM2.5 5a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-11z"/>
+      </svg>
+    </div>
+  </div>
+  <%== pagy_bootstrap_nav(@pagy).html_safe %>
+</div>

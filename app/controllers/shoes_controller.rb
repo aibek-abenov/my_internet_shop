@@ -3,8 +3,14 @@ class ShoesController < ApplicationController
   before_action :set_shoe, only: %i[edit update destroy show]
   before_action :authenticate_user! , except: [:index, :show, :category]
 
+  SHOES_PER_PAGE = 8
+
   def index
-    @shoes = Shoe.search(params[:search])
+    if params[:search] && params[:search] != ""
+      @shoes = Shoe.search(params[:search])
+    else
+      @pagy, @shoes = pagy(Shoe.all, items: 8)
+    end
   end
 
   def category
