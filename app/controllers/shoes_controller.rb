@@ -2,6 +2,7 @@ class ShoesController < ApplicationController
 
   before_action :set_shoe, only: %i[edit update destroy show]
   before_action :authenticate_user! , except: [:index, :show, :category]
+  before_action { @pagy_locale = params[:locale] || 'ru' }
 
   SHOES_PER_PAGE = 8
 

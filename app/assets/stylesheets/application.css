@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+.background {
+  background-image: url('prazdnik.jpg');
+  background-repeat: repeat-x;
+  background-size: cover;
+}

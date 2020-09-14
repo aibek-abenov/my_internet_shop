@@ -1,7 +1,7 @@
 <div class="container">
 <h1 class="text-center">Таблица размеров</h1>
-  <table class="table table-striped table-dark">
-    <thead>
+  <table class="table table-striped table-info">
+    <thead class="text-white">
       <tr>
         <th scope="col">Размер</th>
         <th scope="col">Возраст</th>
@@ -11,7 +11,7 @@
         <th scope="col">Великобритания</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="text-dark">
       <% @sizes.each do |size| %>
       <tr>
         <td><%= size.name  %></td>
