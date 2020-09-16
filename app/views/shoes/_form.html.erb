@@ -48,7 +48,7 @@
       <%= f.label :size_id, "Выберите размер" %>
       <%= f.select :size_id, options_from_collection_for_select(@sizes, "id", "name", @shoe.present? ? @shoe.size_id : nil ), { include_blank: true }, {class: "form-control"} %>
     </div>
-     <%= submit_tag(action_name == "edit" ? "Сохранить" : "Создать", class: "btn btn-primary") %>
+     <%= submit_tag(action_name == "edit" ? "Сохранить" : "Создать", class: "btn btn-success") %>
   <% end %>
 </div>
 

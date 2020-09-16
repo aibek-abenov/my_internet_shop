@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>У вас новый заказ от <%= @order.customer %>!</p>
+    <p>
+    Детали заказа<br>
+    --------------------------
+    </p>
+    <p>Имя заказчика: <%= @order.customer %></p>
+    <p>Адрес заказчика: <%= @order.adress %></p>
+    <p>Номер телефона заказчика: <%= @order.phone_number %></p>
+    <p>
+    Детали:<br>
+    ----------
+    </p>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th>Размер</th>
+          <th>Цена</th>
+          <th>Количество</th>
+          <th>Стоимость</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.order.each do |item| %>
+        <tr>
+          <td><%= item["name"] %></td>
+          <td><%= item["size"] %></td>
+          <td><%= item["price"] %></td>
+          <td><%= item["quantity"] %></td>
+          <td><%= item["amount"] %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </body>
+</html>

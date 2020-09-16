@@ -54,22 +54,13 @@ class CartController < ApplicationController
     end
   end
 
-  # def build_json
-  #   cart = session[:cart]
-  #   @cart = CartSession.cart_contents(cart)
-  #   json = {
-  #     :cart_count => cart.count,
-  #     :cart => CartSession.cart_contents(cart),
-  #     :cart_amount => CartSession.total(@cart)
-  #   }
-  #   json
-  # end
 
   def create_order
     cart = session[:cart]
     @order = Order.new(order_params)
     if @order.save
       cart.clear
+      OrderMailer.with(order: @order).new_order_email.deliver_later
       redirect_to root_path
     else
       redirect_to cart_index_path
