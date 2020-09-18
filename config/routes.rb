@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get 'category/:id', to: "shoes#category"
   get 'size', to: 'size#index', as: 'size_index'
   post 'create/order', to: 'cart#create_order', as: 'create_order'
+  resources :brands, except: [:show]
+  resources :categories, except: [:show]
 end

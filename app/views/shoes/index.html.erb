@@ -1,8 +1,8 @@
 <div class="container">
   <% if current_user %>
   <div class="d-flex flex-row-reverse bd-highlight">
-    <div class="p-2 bd-highlight"><%= link_to 'Добавить новый товар', new_shoe_path, class: 'btn btn-success' %></div>
-  	<div class="p-2 bd-highlight"><%= link_to 'Добавить брэнд', '#', class: 'btn btn-warning' %></div>
+    <div class="p-2 bd-highlight"><%= link_to 'Все категории', categories_path, class: 'btn btn-info' %></div>
+    <div class="p-2 bd-highlight"><%= link_to 'Все брэнды', brands_path, class: 'btn btn-warning' %></div>
   </div>
   <% end %>
   <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
@@ -31,6 +31,13 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+  <% if current_user %>
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <div class="p-2 bd-highlight"><%= link_to 'Добавить новый товар', new_shoe_path, class: 'btn btn-success' %></div>
+    <div class="p-2 bd-highlight"><%= link_to 'Добавить категорию', new_category_path, class: 'btn btn-info' %></div>
+  	<div class="p-2 bd-highlight"><%= link_to 'Добавить брэнд', new_brand_path, class: 'btn btn-warning' %></div>
+  </div>
+  <% end %>
     <!-- Call to Action Well -->
   <div class="card text-white bg-info my-5 py-4 text-center">
     <div class="card-body">

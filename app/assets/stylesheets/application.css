@@ -14,8 +14,20 @@
  *= require_self
  */
 
-.background {
+
+body{
   background-image: url('prazdnik.jpg');
   background-repeat: repeat-x;
   background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+footer{
+   width: 100%;
+   position: static;
+   bottom: 0;
 }

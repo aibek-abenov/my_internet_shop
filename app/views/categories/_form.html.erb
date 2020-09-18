@@ -1,0 +1,13 @@
+<div class="col-md-6">
+  <%= form_with model: @category, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :name, "Название" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description, "Описание" %>
+      <%= f.text_area :description, class: "form-control", rows: "4" %>
+    </div>
+    <%= submit_tag(action_name == "edit" ? "Сохранить" : "Создать", class: "btn btn-success") %>
+  <% end %>
+</div>

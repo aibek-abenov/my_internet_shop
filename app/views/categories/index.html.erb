@@ -1,0 +1,27 @@
+<div class="container">
+  <table class="table table-striped table-info">
+    <thead>
+      <tr>
+        <th scope="col">Название</th>
+        <th scope="col">Описание</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+      <tr>
+        <th scope="row"><%= category.name %></th>
+        <td><%= category.description %></td>
+        <td>
+          <%= link_to 'Изменить', edit_category_path(category), class: "btn btn-warning" %>
+          <%= link_to 'Удалить', category_path(category), method: :delete, data: {confirm: 'Вы уверены?'}, class: "btn btn-danger" %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <div class="p-2 bd-highlight"><%= link_to 'Назад', root_path, class: 'btn btn-secondary' %></div>
+    <div class="p-2 bd-highlight"><%= link_to 'Добавить категорию', new_category_path, class: 'btn btn-warning' %></div>
+  </div>
+</div>

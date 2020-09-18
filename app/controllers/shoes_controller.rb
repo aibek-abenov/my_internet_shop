@@ -10,7 +10,7 @@ class ShoesController < ApplicationController
     if params[:search] && params[:search] != ""
       @shoes = Shoe.search(params[:search])
     else
-      @pagy, @shoes = pagy(Shoe.all, items: 8)
+      @pagy, @shoes = pagy(Shoe.all, items: SHOES_PER_PAGE)
     end
   end
 
